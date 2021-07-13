@@ -1,16 +1,12 @@
-'use strict';
+var express=require('express'), http=require('http');
 
-const express = require('express');
+var app=express();
 
-// 상수
-const PORT = 8080;
-const HOST = '0.0.0.0';
-
-// 앱
-const app = express();
-app.get('/', (req, res) => {
-  res.send('Hello World');
+app.use(function(req,res,next){
+    console.log('First');
+    res.writeHead('200', {'Content-Type': 'text/html; charset=utf8'});
+    res.end('<h1>Express server yeahhhhhh</h1>');
 });
-
-app.listen(PORT, HOST);
-console.log(`Running on http://${HOST}:${PORT}`);
+http.createServer(app).listen(3000,function(){
+    console.log('서버 시작');
+});
