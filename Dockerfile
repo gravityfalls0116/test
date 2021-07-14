@@ -1,17 +1,9 @@
-FROM python:3.6-slim
+FROM python:3.7
 
-RUN apt-get clean && apt-get -y update
-
-RUN apt-get -y install nginx
-RUN apt-get -y install python3-dev
-RUN apt-get -y install build-essential
-
+RUN mkdir /app
 WORKDIR /app
-
-COPY requirements.txt /app/requirements.txt
-RUN pip install -r requirements.txt --src /usr/local/src
-
-COPY . .
+ADD . /app/
+RUN pip install -r requirements.txt
 
 EXPOSE 5000
-CMD [ "python", "app.py" ]
+CMD ["python", "/app/app.py"]
