@@ -1,10 +1,10 @@
 FROM python:3.6-slim
 
-RUN yum clean && yum update
+RUN apt-get clean && apt-get -y update
 
-RUN yum install nginx
-RUN yum install python3-dev
-RUN yum install build-essential
+RUN apt-get -y install nginx
+RUN apt-get -y install python3-dev
+RUN apt-get -y install build-essential
 
 WORKDIR /app
 
