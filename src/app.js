@@ -1,13 +1,10 @@
-import * as express from 'express'
+'use strict';
 
-const app = express()
+const http = require('http');
 
-app.get('/', (req, res) => {
-  res.json({
-    message: 'Hello World'
-  })
-})
-
-app.listen(process.env.PORT, () => {
-  console.log('started at', process.env.PORT)
-})
+http.createServer((req, res) => {
+  res.writeHead(200);
+  res.end('hey');
+}).listen(process.env.PORT || 3000, () => {
+  console.log('App listening on port 3000');
+});
