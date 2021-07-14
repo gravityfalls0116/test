@@ -1,24 +1,11 @@
-'use strict';
 
-const express = require('express');
+var express=require('express'), http=require('http');
+var app=express();
+app.use(function(req,res,next){
+  res.writeHead('200', {'Content-Type': 'text/html; charset=utf8'});
+  res.end('<h1>Hello?</h1>');
+})
 
-// Constant
-const PORT = 3000;
-const HOST = '0.0.0.0';
-
-// App
-const app = express();
-app.get('/', (req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.send('Run nodejs on Accordion.\n');
+http.createServer(app).listen(3000,function(){
+  console.log('start');
 });
-
-app.get('/helloworld', (req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.send('Helloworld.\n');
-});
-
-
-app.listen(PORT, HOST);
